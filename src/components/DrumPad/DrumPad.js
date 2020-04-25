@@ -1,5 +1,7 @@
 import React, { useRef, useContext } from 'react';
 import { ActivePadContext } from '../../contexts/ActivePadContext';
+import { Button } from 'reactstrap';
+import './styles.css';
 
 function DrumPad({ data }) {
   const { changePadName } = useContext(ActivePadContext);
@@ -14,7 +16,14 @@ function DrumPad({ data }) {
   }
 
   return (
-    <div id={keyTrigger} className="drum-pad" onClick={handlePad}>
+    <Button
+      color="primary"
+      size="lg"
+      outline
+      id={keyTrigger}
+      className="drum-pad"
+      onClick={handlePad}
+    >
       <audio
         className="clip"
         data-id={id}
@@ -24,7 +33,7 @@ function DrumPad({ data }) {
         id={keyTrigger}
       />
       {keyTrigger}
-    </div>
+    </Button>
   );
 }
 

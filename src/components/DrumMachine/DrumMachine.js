@@ -4,13 +4,19 @@ import DrumPad from '../DrumPad';
 import { ActivePadContext } from '../../contexts/ActivePadContext';
 import drumPadData from './drumPadData';
 
+import { Jumbotron, Container, Row, Col } from 'reactstrap';
+
 function DrumMachine() {
   const { changePadName } = useContext(ActivePadContext);
 
   const drumPads =
     drumPadData &&
     drumPadData.map(function createDrumPad(padData) {
-      return <DrumPad key={padData.id} data={padData} />;
+      return (
+        <Col className="d-flex justify-content-center">
+          <DrumPad key={padData.id} data={padData} />
+        </Col>
+      );
     });
 
   function handleKeyPress(event) {
@@ -33,10 +39,15 @@ function DrumMachine() {
 
   return (
     <div id="drum-machine">
-      <div className="pads-container">{drumPads}</div>
-      <div className="display-container">
+      <Jumbotron>
+        <h1 className="display-5 text-center">Drum Machine</h1>
+      </Jumbotron>
+      <Container className="d-flex justify-content-center">
         <Display />
-      </div>
+      </Container>
+      <Container className="d-flex justify-content-center">
+        <Row xs="3">{drumPads}</Row>
+      </Container>
     </div>
   );
 }
